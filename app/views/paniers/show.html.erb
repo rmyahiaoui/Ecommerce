@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Produit:</b>
+  <%= @panier.produit_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @panier.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_panier_path(@panier) %> |
+<%= link_to 'Back', paniers_path %>

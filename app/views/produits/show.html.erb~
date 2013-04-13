@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nom:</b>
+  <%= @produit.nom %>
+</p>
+
+<p>
+  <b>Prix:</b>
+  <%= @produit.prix %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @produit.description %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= @produit.photo %>
+</p>
+
+<p>
+  <b>Categori:</b>
+  <%= @produit.categori_id %>
+</p>
+
+<p>
+  <b>Quantite:</b>
+  <%= @produit.quantite %>
+</p>
+
+
+<%= link_to 'Edit', edit_produit_path(@produit) %> |
+<%= link_to 'Back', produits_path %>
+<%= link_to 'Ajouter au Panier', new_commande_path(produit) %>

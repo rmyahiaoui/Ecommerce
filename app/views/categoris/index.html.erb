@@ -1,0 +1,26 @@
+<h1>Listing categoris</h1>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categoris.each do |categori| %>
+  <tr>
+    <td><%= categori.nom %></td>
+    <td><%= categori.description %></td>
+    <td><%= link_to 'Show', categori %></td>
+    <td><%= link_to 'Edit', edit_categori_path(categori) %></td>
+    <td><%= link_to 'Destroy', categori, :confirm => 'Are you sure?', :method => :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Categori', new_categori_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@panier) do |f| %>
+  <% if @panier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@panier.errors.count, "error") %> prohibited this panier from being saved:</h2>
+
+      <ul>
+      <% @panier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :produit_id %><br />
+    <%= f.text_field :produit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
