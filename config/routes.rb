@@ -1,31 +1,43 @@
 Ecommerce::Application.routes.draw do
+root :to => 'pages#home'
 
-get "pages/home"
-get "pages/contact"
-get "pages/about" 
-match 'home', :controller => 'pages', :action => 'home'
+match '/', :controller => 'pages', :action => 'home'
+match '/home', :controller => 'pages', :action => 'home'
 match 'contact', :controller => 'pages', :action => 'contact'
 match 'contact', :controller => 'pages', :action => 'contact'
 match 'help', :controller => 'pages', :action => 'help'
+match 'about', :controller => 'pages', :action => 'about'
 resources :pages 
 
+match 'commandes/:action', :controller => 'commandes', :action => /[a-z]+/i
+match 'destroy', :controller => 'commandes', :action => 'destroy'
+match 'payement', :controller => 'commandes', :action => 'payement'
 resources :commandes 
 
 resources :paniers
 
 match 'categoris/:action', :controller => 'categoris', :action => /[a-z]+/i
-match '/categoris/listProduit', :controller => 'categoris', :action => 'listProduit'
-match '/categoris/listCategori', :controller => 'categoris', :action => 'listCategori'
+match 'listProduit', :controller => 'categoris', :action => 'listProduit'
+  
+match 'listCategori', :controller => 'categoris', :action => 'listCategori'
 resources :categoris
 
 match 'produits/:action', :controller => 'produits', :action => /[a-z]+/i
-match '/produits/afficher', :controller => 'produits', :action => 'afficher'
+match 'produits/afficher', :controller => 'produits', :action => 'afficher'
+match '/commandeEffectuer', :controller => 'produits', :action => 'commandeEffectuer'
 resources :produits
 
 match 'user_sessions/:action', :controller => 'user_sessions', :action => /[a-z]+/i
 match 'login', :controller => 'user_sessions', :action => 'new'
 match 'logout' => 'user_sessions#destroy', :as => :logout
-resources :users, :user_sessions
+resources :user_sessions
+
+match '/afficherCommande', :controller => 'users', :action => 'afficherCommande'
+match '/Profil', :controller => 'users', :action => 'profilUser'
+match '/show', :controller => 'users', :action => 'show'
+
+
+resources :users
 
 
 

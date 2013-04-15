@@ -27,8 +27,8 @@ class CommandesController < ApplicationController
     #Ajout de l'article au panier
       @commande = Commande.new(:produit_id => params[:format] ,:user_id => current_user.id,:payer => false)
       @commande.save
-      
-    
+     @commandes = Commande.find_by_user_id(current_user.id)
+
   end
 
   # GET /commandes/1/edit
@@ -58,8 +58,8 @@ class CommandesController < ApplicationController
     @commande = Commande.find(params[:id])
 
     respond_to do |format|
-      if @commande.update_attributes(params[:commande])
-        format.html { redirect_to(@commande, :notice => 'Commande was successfully updated.') }
+      if @commande.update_attributes(:payer => true)
+        format.html { redirect_to(@commande, :notice => 'Votre commande a ete pris on compte.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -71,7 +71,7 @@ class CommandesController < ApplicationController
   # DELETE /commandes/1
   # DELETE /commandes/1.xml
   def destroy
-    @commande = Commande.find(params[:id])
+    @commande = Commande.find(params[:commande])
     @commande.destroy
 
     respond_to do |format|
@@ -79,4 +79,19 @@ class CommandesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def payement
+    @commande = Commande.find(params[:commande])
+  end
+
+def commandeEffectuer
+    @commandes = Commande.find_by_sql("SELECT * FROM commandes where Payer='false' ")
+   # @commandes=Commande.find_by_sql
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @commandes }
+    end
+  end
+  
+
 end

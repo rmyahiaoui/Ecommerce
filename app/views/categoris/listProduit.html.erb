@@ -1,9 +1,9 @@
-<h2>Produit de <%= @categori.nom %></h2>
+<h2><%= @categori.nom %></h2>
 <% @categori.produits.each do |produit| %>
  
     <b><%= produit.nom %></b>
   
-    Prix: 		<%= produit.prix %>
+    Prix: 		<%= produit.prix %> euro
 
    <%= link_to "Détail", {:controller => "produits", :action => "afficher",
 	 :produit => produit} %>

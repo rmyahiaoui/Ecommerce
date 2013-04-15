@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Nom:</b>
-  <%= @produit.nom %>
-</p>
-<p>
-  <b>Photo:</b>
+  <b> 
+  Nom: <%= @produit.nom %>
+  </b>
+</p>  
+</b>
  
-  <img src= <%= @produit.photo %> />
-</p>
-
+<%= image_tag("produit/" + @produit.photo + ".jpeg", :alt => "Site Ecommerce ", :class => "round") %>  
 <p>
   <b>Description:</b>
   <%= @produit.description %>
 </p>
 
 
-<p>
-  <b>Categori:</b>
-  <%= @produit.categori_id %>
-</p>
+
 
 <p>
   <b>Quantite Disponible:</b>

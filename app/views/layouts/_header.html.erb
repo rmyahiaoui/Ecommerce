@@ -1,0 +1,24 @@
+
+<header>
+	       
+	<%= image_tag("logo.png", :alt => "Site Ecommerce ", :class => "round") %>	
+	<nav class="round">
+		 	<% if current_user %>
+				Bienvenu <%= current_user.username%>
+				<%= link_to " Logout ", :logout %>
+				<%= link_to " Modifier Profile ", edit_user_path(current_user.id)%>
+					<% if current_user.username == "admin" %>
+						<%= link_to " modifier produit ", produits_path %>
+						<%= link_to " modifier catégorie ", categoris_path %>
+						<%= link_to " modifier utilisateurs ", users_path %>
+						<%= link_to "visualiser commandes", {:controller => "commandes", :action => "commandeEffectuer"}%>
+					<% end %>
+			<% else %>
+					<%= link_to " Inscription ", new_user_path%> 
+					<%= link_to " Connexion ", :login %>
+			<% end %></li>
+			<%= link_to " Accueil ", home_path %>
+	</nav>
+
+</header>
+

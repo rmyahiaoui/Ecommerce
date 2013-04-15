@@ -1,0 +1,64 @@
+<%= form_for(@commande) do |f| %>
+  <% if @commande.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commande.errors.count, "error") %> prohibited this commande from being saved:</h2>
+
+      <ul>
+      <% @commande.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <label for="Titulaire">Titulaire_de_la_carte* : </label>
+      <input type="text" name="Titulaire">
+  </div>
+  <div class="field">
+      <label for="Numero">Numéro de la carte*    : </label>
+      <input type="text" name="Numero">
+  </div>
+   <div class="field">
+      <label for="mois">Date d'expiration (mm/aaaa)* : </label>
+      <select id="mois" name="mois">
+         <option value="valeur1">01</option>
+         <option value="valeur2">02</option>
+         <option value="valeur3">03</option>
+         <option value="valeur4">04</option>
+         <option value="valeur5">05</option>
+         <option value="valeur6">06</option>
+         <option value="valeur7">07</option>
+         <option value="valeur8">08</option>
+         <option value="valeur9">09</option>
+         <option value="valeur10">10</option>
+         <option value="valeur11">11</option>
+         <option value="valeur12">12</option>
+      </select> 
+      <select id="annee" name="annee">
+         <option value="valeur1">2013</option>
+         <option value="valeur2">2014</option>
+         <option value="valeur3">2015</option>
+         <option value="valeur4">2016</option>
+         <option value="valeur5">2017</option>
+         <option value="valeur6">2018</option>
+         <option value="valeur7">2019</option>
+         <option value="valeur8">2020</option>
+         <option value="valeur9">2021</option>
+         <option value="valeur10">2022</option>
+         <option value="valeur11">2023</option>
+         <option value="valeur12">2024</option>
+      </select>
+  </div>
+  <div class="field">
+      <label for="code">Code de vérification de la carte* : </label>
+      <input type="text" name="code">
+  </div>
+  <div class="field">
+    <%= f.label :payer %><br />
+    <%= f.check_box :payer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

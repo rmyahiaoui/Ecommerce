@@ -5,16 +5,4 @@
   <%= @commande.produit_id %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @commande.user_id %>
-</p>
-
-<p>
-  <b>Payer:</b>
-  <%= @commande.payer %>
-</p>
-
-
-<%= link_to 'Edit', edit_commande_path(@commande) %> |
-<%= link_to 'Back', commandes_path %>
+<%= link_to "Back", {:controller => "users", :action => "afficherCommande"}%>

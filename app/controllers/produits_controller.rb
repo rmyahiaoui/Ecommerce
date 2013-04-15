@@ -1,6 +1,8 @@
 class ProduitsController < ApplicationController
   # GET /produits
   # GET /produits.xml
+  require 'action_controller'
+
   def index
     @produits = Produit.all
 
@@ -42,8 +44,10 @@ class ProduitsController < ApplicationController
   def create
     @produit = Produit.new(params[:produit])
 
+
     respond_to do |format|
       if @produit.save
+         
         format.html { redirect_to(@produit, :notice => 'Produit was successfully created.') }
         format.xml  { render :xml => @produit, :status => :created, :location => @produit }
       else

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-acts_as_authentic do |c|
-    c.login_field = :username
-    c.email_field = :email
-end
+	
+	has_many :commandes
+	acts_as_authentic do |c|
+	    c.login_field = :username
+	    c.email_field = :email
+	end
 end

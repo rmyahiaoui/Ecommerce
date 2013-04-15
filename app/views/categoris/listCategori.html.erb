@@ -1,20 +1,15 @@
-<h1>List categoris</h1>
+<h3>Séléctionner une categories</h3>
 
 <table>
   <tr>
-    <th>Nom</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Categories</th>
   </tr>
 
 <% @categoris.each do |categori| %>
   <tr>
     <td><%= categori.nom %></td>
-    <td><%= categori.description %></td>
    
-     <td><%= link_to "List Produit", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+     <td><%= link_to "Visualiser Produit", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
   </tr>
 <% end %>
 </table>
