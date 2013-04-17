@@ -1,33 +1,59 @@
 <%= form_for(@user) do |f| %>
-<% if @user.errors.any? %>
-<div id="error_explanation">
-<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
- 
-<ul>
-<% @user.errors.full_messages.each do |msg| %>
-<li><%= msg %></li>
-<% end %>
-</ul>
-</div>
-<% end %>
- 
-<div class="field">
-<%= f.label :username %><br />
-<%= f.text_field :username %>
-</div>
-<div class="field">
-<%= f.label :email %><br />
-<%= f.text_field :email %>
-</div>
-<div class="field">
-<%= f.label :password %><br />
-<%= f.password_field :password %>
-</div>
-<div class="field">
-<%= f.label :password_confirmation %><br />
-<%= f.password_field :password_confirmation %>
-</div>
-<div class="actions">
-<%= f.submit %>
-</div>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+		<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+		<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+		</ul>
+		</div>
+	<% end %>
+	<div class="field">
+		<%= f.label :username %><br />
+		<%= f.text_field :username %>
+	</div>
+	<div class="field">
+		<%= f.label :email %><br />
+		<%= f.text_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label :password %><br />
+		<%= f.password_field :password %>
+	</div>
+	<div class="field">
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation %>
+	</div>
+	<div class="field">
+		<%= f.label :photo %><br />
+		<%= f.file_field  :photo %>
+	</div>
+
+	<div class="field">
+		<%= f.label :adress %><br />
+		<%= f.text_field :adress %>
+	</div>
+	<div class="field">
+		<%= f.label :code_postal %><br />
+		<%= f.text_field :code_postal %>
+	</div>
+	<div class="field">
+		<%= f.label :ville %><br />
+		<%= f.password_field :ville %>
+	</div>
+		<%= f.label :pay %><br />
+		<%= f.text_field :pay %>
+	</div>
+		<% if current_user %>
+		<% if current_user.admin == true %><!-- verifié si le compte connecté est administrateur afin quand puisse créé un nouveau compte admin ou client -->
+	<div class="field">
+		<%= f.label :admin %><br />
+		<%= f.check_box :admin %>
+	</div>
+	<% end %>
+	<% end %>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
 <% end %>

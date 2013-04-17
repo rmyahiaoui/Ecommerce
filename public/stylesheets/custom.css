@@ -1,5 +1,5 @@
 .container {
-  width: 1000px;
+
 }
 
 body {
@@ -10,7 +10,7 @@ header {
   padding-top: 20px;
   text-align: right;
   margin-top: 20px;
-  width: 1000px;
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -68,7 +68,7 @@ a.signup_button {
 footer {
   text-align: center;
   margin-top: 20px;
-  width: 1000px;
+
   margin-left: auto;
   margin-right: auto;
 

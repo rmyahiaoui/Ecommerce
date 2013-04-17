@@ -43,8 +43,7 @@ class ProduitsController < ApplicationController
   # POST /produits.xml
   def create
     @produit = Produit.new(params[:produit])
-
-
+    
     respond_to do |format|
       if @produit.save
          

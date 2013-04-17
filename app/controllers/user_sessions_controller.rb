@@ -18,17 +18,8 @@ def create
 		@user_session = UserSession.new(params[:user_session])
 			respond_to do |format|
 				if @user_session.save
-					if current_user.username=="admin"	
-						format.html { redirect_to(:users,:notice => 'Connexion reussi') }
-						format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
-					
-					else
-					
 						format.html { redirect_to(:home,:notice => 'Connexion reussi') }
-							
 						format.xml { head :ok }
-						
-					end
 				else
 					format.html { render :action => "new" }
 					format.xml { render :xml => @user_session.errors, :status => :unprocessable_entity }

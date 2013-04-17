@@ -7,7 +7,7 @@
 				Bienvenu <%= current_user.username%>
 				<%= link_to " Logout ", :logout %>
 				<%= link_to " Modifier Profile ", edit_user_path(current_user.id)%>
-					<% if current_user.username == "admin" %>
+					<% if current_user.admin == true %><!-- verifié si le compte est administrateur afin qde lui donner les previlege de modifier les produit et gatégorie  -->
 						<%= link_to " modifier produit ", produits_path %>
 						<%= link_to " modifier catégorie ", categoris_path %>
 						<%= link_to " modifier utilisateurs ", users_path %>

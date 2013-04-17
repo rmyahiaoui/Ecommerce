@@ -1,32 +1,46 @@
-<h1>Listing users</h1>
+<h3>Liste des Utilisateurs Inscrit</h3>
  
 <table>
 <tr>
 <th>Username</th>
 <th>Email</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
+<th>password_field</th>
+<th>photo</th>
+<th>adress</th>
+<th>code_postal</th>
+<th>ville</th>
+<th>pay</th>
+<th>admin</th>
 
-		<% @users.each do |user| %>
+<% if current_user %>
+	<% if current_user.admin == true %><!-- verifié si le compte est administrateur afin quand puisse lister les utilisateurs et les modifier  -->
+			<% @users.each do |user| %>
 
-			<tr>
-				<td><%= user.username %></td>
-				<td><%= user.email %></td>
-				<td><%= link_to 'Show', user %></td>
-				<td><%= link_to 'Edit', edit_user_path(user) %></td>
-				<td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-			</tr>
-		<% end %>
+				<tr>
+					<td><%= user.username %></td>
+					<td><%= user.email %></td>
+					<td><%= user.password_field %></td>
+					<td><%= user.photo %></td>
+					<td><%= user.adress %></td>
+					<td><%= user.code_postal %></td>
+					<td><%= user.ville %></td>
+					<td><%= user.pay %></td>
+					<td><%= user.admin %></td>
+					<td><%= link_to 'Show', user %></td>
+					<td><%= link_to 'Edit', edit_user_path(user) %></td>
+					<td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+				</tr>
+			<% end %>
+	<% end %>
+
 	
-
-
+<% end %>	
 </table>
  
 <br />
-<% if current_user!=nil%>
-<% if current_user.username=='admin' %>
+
+<% if current_user %>
+<% if current_user.admin == true %>
 	<%= link_to 'New User', new_user_path %>
 <% end %>
 <% end %>

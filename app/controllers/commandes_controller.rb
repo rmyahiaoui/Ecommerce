@@ -40,7 +40,7 @@ class CommandesController < ApplicationController
   # POST /commandes.xml
   def create
     @commande = Commande.new(params[:commande])
-
+    
     respond_to do |format|
       if @commande.save
         format.html { redirect_to(@commande, :notice => 'Commande was successfully created.') }
@@ -56,7 +56,8 @@ class CommandesController < ApplicationController
   # PUT /commandes/1.xml
   def update
     @commande = Commande.find(params[:id])
-
+   
+  end
     respond_to do |format|
       if @commande.update_attributes(:payer => true)
         format.html { redirect_to(@commande, :notice => 'Votre commande a ete pris on compte.') }
@@ -85,8 +86,7 @@ class CommandesController < ApplicationController
   end
 
 def commandeEffectuer
-    @commandes = Commande.find_by_sql("SELECT * FROM commandes where Payer='false' ")
-   # @commandes=Commande.find_by_sql
+    @commandes = Commande.find_all_by_payer(true)# lister juste les produits payer 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @commandes }

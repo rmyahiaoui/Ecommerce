@@ -1,4 +1,4 @@
-<h1>Listing produits</h1>
+<h2>Liste produits</h2>
 
 <table>
   <tr>
@@ -19,7 +19,7 @@
     <td><%= produit.prix %></td>
     <td><%= produit.description %></td>
     <td><%= produit.photo %></td>
-    <td><%= produit.categori_id %></td>
+    <td><%= Categori.find_by_id(produit.categori_id).nom %></td>
     <td><%= produit.quantite %></td>
     <td><%= link_to 'Show', produit %></td>
     <td><%= link_to 'Edit', edit_produit_path(produit) %></td>

@@ -20,21 +20,25 @@
     <%= f.text_field :prix %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %><br/>
     <%= f.text_field :description %>
   </div>
   <div class="field">
     <%= f.label :photo %><br />
     <%= f.file_field :photo %>
   </div>
-  <div class="field">
-    <%= f.label :categori_id %><br />
-    <%= f.text_field :categori_id %>
-  </div>
+
+
+     <div class="field">
+      <%= f.label :categori_id, 'Categorie' %><br />
+      <%= f.select :categori_id, Categori.all.map{ |c| [c.nom, c.id] } %>
+      </div>
+
   <div class="field">
     <%= f.label :quantite %><br />
     <%= f.text_field :quantite %>
   </div>
+  <%= file_field_tag 'picture' %>
   <div class="actions">
     <%= f.submit %>
   </div>
