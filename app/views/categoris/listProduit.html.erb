@@ -1,13 +1,24 @@
-<h2><%= @categori.nom %></h2>
-<% @categori.produits.each do |produit| %>
+    <b>Produit de la Categorie <%= @categori.nom %></b><br><br>
+
+<% form_tag(:action => "listProduit") do %> 
+    <%= text_field_tag(:nom, params[:nom], :size => 5) %> 
+    <%= submit_tag :"Recherche !" %>
+<% end %>
+<br>
+<% @produits.each do |produit| %>
  
     <b><%= produit.nom %></b>
-  
     Prix: 		<%= produit.prix %> euro
 
    <%= link_to "Détail", {:controller => "produits", :action => "afficher",
 	 :produit => produit} %>
   <br>
 <% end %>
-<%= link_to "Retour", {:controller => "categoris", :action => "listCategori",
-	 :categori => @categori} %>
+<%= link_to "Retour", {:controller => "categoris", :action => "index"} %><br>
+
+  <% if current_user %>
+      	<% if current_user.admin %><!-- verifier si le user est un administrateur -->
+			<%= link_to 'Creer Produit', new_produit_path %>
+		<% end %>
+	<% end %>
+

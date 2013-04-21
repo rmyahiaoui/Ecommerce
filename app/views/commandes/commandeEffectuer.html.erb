@@ -1,22 +1,27 @@
-<h1>Listing commandes</h1>
+<h3>Liste des commandes</h3>
 
 <table>
   <tr>
-    <th>Produit</th>
-    <th>Client</th>
-    <th>Payement</th>
+    <th align='center'>Produit</th>
+    <th align='center'>Client</th>
+    <th align='center'>Payement</th>
+    <th align='center'></th>
   </tr>
 
 <% @commandes.each do |commande| %>
   <tr>
-    <td><%= Produit.find_by_id(commande.produit_id).nom %></td>
-    <td><%= User.find_by_id(commande.user_id).username %></td>
-    <% if commande.payer==true %>
-      <td>Effectuer</td>
-    <% end %>
-    <td><%= link_to 'Show', commande %></td>
-    <td><%= link_to 'Edit', edit_commande_path(commande) %></td>
-    <td><%= link_to 'Destroy', commande, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td align='center'><%= Produit.find_by_id(commande.produit_id).nom %></td>
+    <td align='center'><%= User.find_by_id(commande.user_id).username %></td>
+    
+      <td align='center'>
+        <% if commande.payer%>
+          <%= "Effectuer"%>
+        <%  else %>
+          <%= "en Attente"%>
+        <% end %>
+      </td>
+      <td align='center'><%= link_to "Supprimer", {:controller => "commandes", :action => "destroy",:commande => commande}%></td>
+  
   </tr>
 <% end %>
 </table>

@@ -54,11 +54,8 @@
       <label for="code">Code de vérification de la carte* : </label>
       <input type="text" name="code">
   </div>
-  <div class="field">
-    <%= f.label :payer %><br />
-    <%= f.check_box :payer %>
-  </div>
+ 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'valider'%>
   </div>
 <% end %>

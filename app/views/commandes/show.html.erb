@@ -2,7 +2,7 @@
 
 <p>
   <b>Produit:</b>
-  <%= @commande.produit_id %>
+  <%= Produit.find_by_id(@commande.produit_id).nom %>
 </p>
 
 <%= link_to "Back", {:controller => "users", :action => "afficherCommande"}%>

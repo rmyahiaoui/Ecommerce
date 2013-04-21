@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag("user/" + @user.photo , :alt => "Site Ecommerce ", :class => "round") %>  
+</p>
+
+<p>
+  <b>Nom Utilisateur:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Mot de pass:</b>
+  <%= @user.password_field %>
+</p>
+
+<p>
+  <b>Adress:</b>
+  <%= @user.adress %>
+</p>
+
+<p>
+  <b>Code postal:</b>
+  <%= @user.code_postal %>
+</p>
+
+<p>
+  <b>Ville:</b>
+  <%= @user.ville %>
+</p>
+
+<p>
+  <b>Pay:</b>
+  <%= @user.pay %>
+</p>
+
+<%= link_to " Modifier Profile ", edit_user_path(current_user.id)%> |
+<%= link_to 'Retour', users_path %>

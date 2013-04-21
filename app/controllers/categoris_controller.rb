@@ -2,7 +2,14 @@ class CategorisController < ApplicationController
   # GET /categoris
   # GET /categoris.xml
   def index
-    @categoris = Categori.all
+    #params[:nom] c'est pour effectuer la recherche d'une categorie dans la liste
+    @var=params[:nom] 
+    if(params[:nom] == nil )
+      @categoris = Categori.all
+    else
+      @categoris = Categori.find(:all, 
+      :conditions=> ["nom like :eq", {:eq => @var + "%"}]) 
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categoris }
@@ -13,14 +20,10 @@ class CategorisController < ApplicationController
   # GET /categoris/1.xml
   def show
     @categori = Categori.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @produit }
     end
-
-
-
   end
 
   # GET /categoris/new
@@ -45,7 +48,7 @@ class CategorisController < ApplicationController
 
     respond_to do |format|
       if @categori.save
-        format.html { redirect_to(@categori, :notice => 'Categori was successfully created.') }
+        format.html { redirect_to(@categori, :notice => 'La gategorie a ete cree avec succee.') }
         format.xml  { render :xml => @categori, :status => :created, :location => @categori }
       else
         format.html { render :action => "new" }
@@ -61,7 +64,7 @@ class CategorisController < ApplicationController
 
     respond_to do |format|
       if @categori.update_attributes(params[:categori])
-        format.html { redirect_to(@categori, :notice => 'Categori was successfully updated.') }
+        format.html { redirect_to(@categori, :notice => 'La gategorie a ete M.A.J avec succee.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -80,24 +83,24 @@ class CategorisController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  
 
-  def listCategori
-    @categoris = Categori.all
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @categoris }
+  def listProduit 
+  # lister les produits par categoris
+   # params[:nom] c'est pour rechercher un produit dans la liste des produits d'une categorie
+    @pro = params[:nom]
+    if( params[:nom] == nil )
+      @categori = Categori.find(params[:categori])
+      @produits = @categori.produits
+    else
+      @produits = Produit.find(:all, 
+      :conditions=> ["nom like :eq ", {:eq =>  @pro + "%"}]) 
     end
-  end
-
-  def listProduit
-     @categori = Categori.find(params[:categori])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @produit }
     end
-    end 
-
+  end 
+  
 end
+
+ 

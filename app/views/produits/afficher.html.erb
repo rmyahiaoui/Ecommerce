@@ -2,19 +2,16 @@
 
 <p>
   <b> 
-  Nom: <%= @produit.nom %>
+  Nom du produit: <%= @produit.nom %>
   </b>
 </p>  
 </b>
  
-<%= image_tag("produit/" + @produit.photo + ".jpeg", :alt => "Site Ecommerce ", :class => "round") %>  
+<%= image_tag("produit/" + @produit.photo , :class => "round") %>  
 <p>
   <b>Description:</b>
   <%= @produit.description %>
 </p>
-
-
-
 
 <p>
   <b>Quantite Disponible:</b>
@@ -25,6 +22,23 @@
   <b>Prix:</b>
   <%= @produit.prix %>
 </p>
+ <% if current_user %>
+        <% if current_user.admin %><!-- verifier si le user est un administrateur -->
+        <p>
+        <b>Categorie du produit:</b>
+	        <%= Categori.find_by_id(@produit.categori_id).nom %><br>
+        </p>
+	    	<%= link_to 'Modifier', edit_produit_path(@produit) %><br>	
+	    	<%= link_to 'Supprimer', @produit, :confirm => 'Are you sure?', :method => :delete %><br>	
+        <% end %>
+    <% end %>
+<%= link_to 'Retour', categoris_path %>
 
-<%= link_to 'Back', produits_path %>
-<%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
+<% if current_user %>
+        <% if !current_user.admin %><!-- verifier si le user est un administrateur -->
+			     <%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
+        <% end %>
+        <% else if !current_user %>
+            <%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
+<% end %>
+<% end %>

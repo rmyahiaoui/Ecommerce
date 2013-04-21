@@ -16,3 +16,9 @@
 
 <br/>
 
+<% form_tag( :controller => "categoris" , :action => "index") do %>
+
+		 <%= text_field_tag(:arg1, params[:arg1], :size => 5) %> &times
+		
+		<%= submit_tag :"recherche" %>
+<% end %>

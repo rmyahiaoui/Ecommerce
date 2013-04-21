@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Produit</th>
-    <th>User</th>
-    <th>Payer</th>
+    <th align='center'>Produit</th>
+    <th align='center'>User</th>
+    <th align='center'>Payer</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,16 +12,16 @@
 
 <% @commandes.each do |commande| %>
   <tr>
-    <td><%= commande.produit_id %></td>
-    <td><%= commande.user_id %></td>
-    <td><%= commande.payer %></td>
-    <td><%= link_to 'Show', commande %></td>
-    <td><%= link_to 'Edit', edit_commande_path(commande) %></td>
-    <td><%= link_to 'Destroy', commande, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td align='center'><%= Produit.find_by_id(commande.produit_id).nom %></td>
+    <td align='center'><%= User.find_by_id(commande.user_id).username %></td>
+    <td align='center'><%= commande.payer %></td>
+    <td align='center'><%= link_to 'Show', commande %></td>
+    <td align='center'><%= link_to 'Edit', edit_commande_path(commande) %></td>
+    <td align='center'><%= link_to 'Destroy', commande, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Commande', new_commande_path %>
+<%= link_to 'creer Commande', new_commande_path %>

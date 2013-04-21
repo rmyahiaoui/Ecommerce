@@ -1,21 +1,21 @@
-<h1>Listing user_sessions</h1>
+<h3>liste des user_sessions</h3>
 
 <table>
   <tr>
-    <th>Username</th>
-    <th>Password</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th align='center'>Username</th>
+    <th align='center'>Password</th>
+    <th align='center'></th>
+    <th align='center'></th>
+    <th align='center'></th>
   </tr>
 
 <% @user_sessions.each do |user_session| %>
   <tr>
-    <td><%= user_session.username %></td>
-    <td><%= user_session.password %></td>
-    <td><%= link_to 'Show', user_session %></td>
-    <td><%= link_to 'Edit', edit_user_session_path(user_session) %></td>
-    <td><%= link_to 'Destroy', user_session, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td align='center'><%= user_session.username %></td>
+    <td align='center'><%= user_session.password %></td>
+    <td align='center'><%= link_to 'Show', user_session %></td>
+    <td align='center'><%= link_to 'Edit', edit_user_session_path(user_session) %></td>
+    <td align='center'><%= link_to 'Destroy', user_session, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

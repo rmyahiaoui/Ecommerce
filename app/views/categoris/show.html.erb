@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h3>Categorie</h3>
 <p>
   <b>Nom:</b>
   <%= @categori.nom %>
@@ -9,9 +9,9 @@
   <%= @categori.description %>
 </p>
 
-<%= link_to 'Edit', edit_produit_path(@categori) %> |
-<%= link_to 'Back', produits_path %>
-<%= link_to 'Ajouter au Panier', new_commande_path(@categori) %>
+<%= link_to 'Modifier', edit_categori_path(@categori) %> |
+<%= link_to 'Retour', categoris_path %>
+
 
 
 

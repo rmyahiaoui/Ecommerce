@@ -1,24 +1,21 @@
-<h1>Votre Panier</h1>
+<h3>Votre Panier</h3>
 
 <table>
   <tr>
-    <th>Produit</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th align='center'>Produit</th>
+    <th align='center'></th>
+    <th align='center'></th>
   </tr>
 <!-- lister le panier --> 
 <% @user.commandes.each do |commande| %>
   <% if commande.payer==false  %>
   <tr>
     <!-- produit ajouter au panier --> 
-    <td><%= commande.produit_id %></td>
+    <td align='center'><%= Produit.find_by_id(commande.produit_id).nom %></td>
     <!-- retiré le produit du panier --> 
-    <td><%= link_to "Retirer du Panier", {:controller => "commandes", :action => "destroy", :commande => commande}%></td>
+    <td align='center'><%= link_to "Retirer du Panier", {:controller => "commandes", :action => "destroy", :commande => commande}%></td>
     <!-- commander le produit --> 
-    <td><%= link_to "Payement", {:controller => "commandes", :action => "payement", :commande => commande}%></td>
+    <td align='center'><%= link_to "commander", {:controller => "commandes", :action => "payement", :commande => commande}%></td>
     
   </tr>
   <% end %>
@@ -27,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Commande', new_commande_path %>
+<%= link_to "Retour", {:controller => "commandes", :action => "mesAchat"}%>

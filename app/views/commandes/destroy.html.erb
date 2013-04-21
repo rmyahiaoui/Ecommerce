@@ -1,0 +1,11 @@
+<h3>Produit retirer du panier</h3>
+
+	
+ 	 <% if current_user %>
+      	<% if current_user.admin %><!-- verifier si le user est un administrateur -->
+      	<%= link_to "Retour", {:controller => "commandes", :action => "commandeEffectuer"}%>
+      	<% else %>
+      		<%= link_to "Voir votre panier", {:controller => "users", :action => "afficherCommande"}%>
+			<%= link_to 'Retour', home_path %>
+      	<% end %>
+	<% end %>

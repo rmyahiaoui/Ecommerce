@@ -1,26 +1,35 @@
-<h3>Liste de categories</h3>
+<h3>Categories des produits</h3><br>
 
+<% form_tag(:action => "index") do %><!-- Recherche de categorie -->
+    <%= text_field_tag(:nom, params[:nom], :size => 5) %> 
+    <%= submit_tag :"Recherche!" %>
+<% end %>
+<br>
 <table>
   <tr>
     <th>Nom</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @categoris.each do |categori| %>
   <tr>
     <td><%= categori.nom %></td>
     <td><%= categori.description %></td>
-    <td><%= link_to 'Show', categori %></td>
-    <td><%= link_to 'Edit', edit_categori_path(categori) %></td>
-    <td><%= link_to 'Destroy', categori, :confirm => 'Are you sure?', :method => :delete %></td>
-
+    <td><%= link_to "Visualiser Produits", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td><!-- verifier si les produits -->
+    
+    <% if current_user %>
+      <% if current_user.admin == true %><!-- verifier si le user est un administrateur -->
+        <td><%= link_to 'Visualiser', categori %></td>
+        <td><%= link_to 'Modifier', edit_categori_path(categori) %></td>
+        <td><%= link_to 'Supprimer', categori, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>  
+    <% end %>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Categori', new_categori_path %>
+<br/>
+<% if current_user %>
+    <% if current_user.admin == true %><!-- verifier si le user est un administrateur -->
+        <%= link_to 'Creer Categori', new_categori_path %>
+    <% end %>  
+<% end %>

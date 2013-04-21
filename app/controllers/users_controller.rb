@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(:controller => "users", :action => "profilUser",:notice => 'Modification reussie') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,7 +81,6 @@ class UsersController < ApplicationController
   def afficherCommande
     #Afficher le panier
     @user = User.find(current_user.id)
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -89,7 +88,6 @@ class UsersController < ApplicationController
   end
 
 def profilUser
-  #@user = User.find(params[:id])
   @user = User.find(current_user.id)
     respond_to do |format|
       format.html # profilUser.html.erb

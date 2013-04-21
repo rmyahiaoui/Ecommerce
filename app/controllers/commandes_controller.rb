@@ -24,13 +24,24 @@ class CommandesController < ApplicationController
   # GET /commandes/new
   # GET /commandes/new.xml
   def new
-    #Ajout de l'article au panier
+    #Ajout l'article au panier
+    if current_user
       @commande = Commande.new(:produit_id => params[:format] ,:user_id => current_user.id,:payer => false)
       @commande.save
-     @commandes = Commande.find_by_user_id(current_user.id)
+      @commandes = Commande.find_by_user_id(current_user.id)
+    else
+      redirect_to( :login, :notice => 'Veuillez vous Identifier') 
 
+    end 
   end
 
+
+  def destroy
+    @commande = Commande.find(params[:commande])
+    @commande.destroy
+          
+       
+  end
   # GET /commandes/1/edit
   def edit
     @commande = Commande.find(params[:id])
@@ -56,8 +67,7 @@ class CommandesController < ApplicationController
   # PUT /commandes/1.xml
   def update
     @commande = Commande.find(params[:id])
-   
-  end
+
     respond_to do |format|
       if @commande.update_attributes(:payer => true)
         format.html { redirect_to(@commande, :notice => 'Votre commande a ete pris on compte.') }
@@ -71,27 +81,37 @@ class CommandesController < ApplicationController
 
   # DELETE /commandes/1
   # DELETE /commandes/1.xml
-  def destroy
-    @commande = Commande.find(params[:commande])
-    @commande.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(commandes_url) }
-      format.xml  { head :ok }
-    end
-  end
+ 
 
   def payement
     @commande = Commande.find(params[:commande])
   end
 
-def commandeEffectuer
-    @commandes = Commande.find_all_by_payer(true)# lister juste les produits payer 
+  def commandeEffectuer
+    # lister juste les produits commander par les utilisateurs
+    @commandes = Commande.find_all_by_payer(true) 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @commandes }
     end
   end
   
+  def mesAchat 
+  # action qui affiche les commandes effectuer et le contenu du panier
+    respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @commandes }
+    end
+  end  
+
+  def commandeEffectuerUser
+    # lister juste les produits commander par un utilisateur
+    @commandes = Commande.find(:all, 
+      :conditions=> ["payer = :eq and user_id = :id", {:eq =>  true, :id => current_user.id }]) 
+    respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @commandes }
+    end
+  end
 
 end

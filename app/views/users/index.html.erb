@@ -2,33 +2,43 @@
  
 <table>
 <tr>
-<th>Username</th>
-<th>Email</th>
-<th>password_field</th>
-<th>photo</th>
-<th>adress</th>
-<th>code_postal</th>
-<th>ville</th>
-<th>pay</th>
-<th>admin</th>
+<th align='center'>Nom Utilisateur</th>
+<th align='center'>Email</th>
+<th align='center'>Mot de pass</th>
+<th align='center'>Photo</th>
+<th align='center'>Adress</th>
+<th align='center'>Code_postal</th>
+<th align='center'>Ville</th>
+<th align='center'>Pay</th>
+<th align='center'>Admin</th>
+<th align='center'></th>
+<th align='center'></th>
+<th align='center'></th>
 
 <% if current_user %>
 	<% if current_user.admin == true %><!-- verifié si le compte est administrateur afin quand puisse lister les utilisateurs et les modifier  -->
 			<% @users.each do |user| %>
 
 				<tr>
-					<td><%= user.username %></td>
-					<td><%= user.email %></td>
-					<td><%= user.password_field %></td>
-					<td><%= user.photo %></td>
-					<td><%= user.adress %></td>
-					<td><%= user.code_postal %></td>
-					<td><%= user.ville %></td>
-					<td><%= user.pay %></td>
-					<td><%= user.admin %></td>
-					<td><%= link_to 'Show', user %></td>
-					<td><%= link_to 'Edit', edit_user_path(user) %></td>
-					<td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+					<td align='center'><%= user.username %></td>
+					<td align='center'><%= user.email %></td>
+					<td align='center'><%= user.password_field %></td>
+					<td align='center'><%= user.photo %></td>
+					<td align='center'><%= user.adress %></td>
+					<td align='center'><%= user.code_postal %></td>
+					<td align='center'><%= user.ville %></td>
+					<td align='center'><%= user.pay %></td>
+					
+					<td align='center'><% if user.admin %>
+							<%= "oui"%>
+						<% else %>
+							<%= "non"%>
+						<% end %>
+					</td>
+
+					<td align='center'><%= link_to 'Visualiser', user %></td>
+					<td align='center'><%= link_to 'Modifier', edit_user_path(user) %></td>
+					<td align='center'><%= link_to 'Supprimer', user, :confirm => 'Are you sure?', :method => :delete %></td>
 				</tr>
 			<% end %>
 	<% end %>
@@ -41,6 +51,6 @@
 
 <% if current_user %>
 <% if current_user.admin == true %>
-	<%= link_to 'New User', new_user_path %>
+	<%= link_to 'Creer Utilisateur', new_user_path %>
 <% end %>
 <% end %>

@@ -45,15 +45,15 @@
 		<%= f.label :pay %><br />
 		<%= f.text_field :pay %>
 	</div>
-		<% if current_user %>
+	<% if current_user %>
 		<% if current_user.admin == true %><!-- verifié si le compte connecté est administrateur afin quand puisse créé un nouveau compte admin ou client -->
-	<div class="field">
-		<%= f.label :admin %><br />
-		<%= f.check_box :admin %>
-	</div>
-	<% end %>
+				<div class="field">
+					<%= f.label :admin %><br />
+					<%= f.check_box :admin %>
+				</div>
+		<% end %>
 	<% end %>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit 'Valider'%>
 	</div>
 <% end %>
