@@ -5,23 +5,25 @@
     <%= submit_tag :"Recherche!" %>
 <% end %>
 <br>
-<table>
+<table class="listcateg">
   <tr>
     <th>Nom</th>
     <th>Description</th>
   </tr>
 
 <% @categoris.each do |categori| %>
+
   <tr>
-    <td><%= categori.nom %></td>
-    <td><%= categori.description %></td>
-    <td><%= link_to "Visualiser Produits", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td><!-- verifier si les produits -->
-    
+    <td class="clients"><%= link_to categori.nom, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+    <td class="clients"><%= link_to categori.description, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+<!--    <td><%= link_to "Visualiser Produits", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+-->    
     <% if current_user %>
       <% if current_user.admin == true %><!-- verifier si le user est un administrateur -->
-        <td><%= link_to 'Visualiser', categori %></td>
-        <td><%= link_to 'Modifier', edit_categori_path(categori) %></td>
-        <td><%= link_to 'Supprimer', categori, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td class="maintenance">
+            <%= link_to 'Visualiser', categori %><br />
+            <%= link_to 'Modifier', edit_categori_path(categori) %><br />
+            <%= link_to 'Supprimer', categori, :confirm => 'Are you sure?', :method => :delete %></td>
       <% end %>  
     <% end %>
   </tr>

@@ -1,5 +1,5 @@
 Ecommerce::Application.routes.draw do
-#root :to => 'categoris#index'
+root :controller => 'categoris', :action => 'index'
 
 match '/', :controller => 'pages', :action => 'home'
 
@@ -16,7 +16,7 @@ match 'mesAchat', :controller => 'commandes', :action => 'mesAchat'
 match 'commandeEffectuerUser', :controller => 'commandes', :action => 'commandeEffectuerUser'
 resources :commandes 
 
-resources :paniers
+
 
 match 'categoris/:action', :controller => 'categoris', :action => /[a-z]+/i
 match 'listProduit', :controller => 'categoris', :action => 'listProduit'
@@ -37,6 +37,7 @@ resources :user_sessions
 match '/afficherCommande', :controller => 'users', :action => 'afficherCommande'
 match '/Profil', :controller => 'users', :action => 'profilUser'
 match '/show', :controller => 'users', :action => 'show'
+match 'signup', :controller => 'users', :action => 'new'
 
 
 resources :users

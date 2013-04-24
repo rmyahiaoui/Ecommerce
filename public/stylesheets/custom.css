@@ -77,3 +77,14 @@ footer {
 footer nav {
   float: none;
 }
+
+.listcateg {
+  width: 90%;
+}
+
+.listcateg tr td.clients {
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+

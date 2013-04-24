@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415210031) do
+ActiveRecord::Schema.define(:version => 20130411220432) do
 
   create_table "categoris", :force => true do |t|
     t.string   "nom"
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(:version => 20130415210031) do
     t.integer  "code_postal"
     t.string   "ville"
     t.string   "pay"
+    t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin"
   end
 
 end

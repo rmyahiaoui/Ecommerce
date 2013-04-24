@@ -2,6 +2,7 @@ class CommandesController < ApplicationController
   # GET /commandes
   # GET /commandes.xml
   def index
+    @titre = "Liste des commandes" 
     @commandes = Commande.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class CommandesController < ApplicationController
   # GET /commandes/1
   # GET /commandes/1.xml
   def show
+    @titre = "visualiser une commande" 
     @commande = Commande.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class CommandesController < ApplicationController
   # GET /commandes/new
   # GET /commandes/new.xml
   def new
+    @titre = "Nouvelle commande" 
     #Ajout l'article au panier
     if current_user
       @commande = Commande.new(:produit_id => params[:format] ,:user_id => current_user.id,:payer => false)
@@ -37,6 +40,7 @@ class CommandesController < ApplicationController
 
 
   def destroy
+    @titre = "Supprimer une commande" 
     @commande = Commande.find(params[:commande])
     @commande.destroy
           
@@ -66,6 +70,7 @@ class CommandesController < ApplicationController
   # PUT /commandes/1
   # PUT /commandes/1.xml
   def update
+    @titre = "M.A.J d'une commandes" 
     @commande = Commande.find(params[:id])
 
     respond_to do |format|

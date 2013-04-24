@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Categori do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+	before(:each) do
+		@attr = { :nom => "voiture"}
+	end
+	it "devrait creer une nouvelle instance dotee des attributs valides" do
+		Categori.create!(@attr)
+	end
+
 end

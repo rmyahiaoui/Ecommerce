@@ -13,10 +13,6 @@ describe "commandes/new.html.erb" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => commandes_path, :method => "post" do
-      assert_select "input#commande_produit_id", :name => "commande[produit_id]"
-      assert_select "input#commande_user_id", :name => "commande[user_id]"
-      assert_select "input#commande_payer", :name => "commande[payer]"
-    end
+    
   end
 end

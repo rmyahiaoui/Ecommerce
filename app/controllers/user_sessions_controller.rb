@@ -3,11 +3,11 @@ class UserSessionsController < ApplicationController
 # GET /user_sessions/new
 # GET /user_sessions/new.xml
 def new
-	
-@user_session = UserSession.new
-	respond_to do |format|
-		format.html # new.html.erb
-		format.xml { render :xml => @user_session }
+	@titre = "S'identifier"
+	@user_session = UserSession.new
+		respond_to do |format|
+			format.html # new.html.erb
+			format.xml { render :xml => @user_session }
 	end
 	
 end
@@ -30,10 +30,11 @@ end
 # DELETE /user_sessions/1
 # DELETE /user_sessions/1.xml
 def destroy
+	@titre = "deconnection"
 	@user_session = UserSession.find
 	@user_session.destroy	 
 		respond_to do |format|
-			format.html { redirect_to(:home, :notice => 'Goodbye!') }
+			format.html { redirect_to(:home, :notice => 'au revoir!') }
 			format.xml { head :ok }
 		end
 	end

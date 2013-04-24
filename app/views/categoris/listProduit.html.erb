@@ -1,4 +1,4 @@
-    <b>Produit de la Categorie <%= @categori.nom %></b><br><br>
+    <b>Produits de <%= @categori.nom %>&nbsp;: </b><br><br>
 
 <% form_tag(:action => "listProduit") do %> 
     <%= text_field_tag(:nom, params[:nom], :size => 5) %> 
