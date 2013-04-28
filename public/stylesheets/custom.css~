@@ -73,7 +73,7 @@ section #recherche  {
 
 section #photo {
   float: right;
-  clear: none;
+  clear: both;
 }
 
 /* Liens */

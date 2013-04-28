@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b> 
-  Nom du produit: <%= @produit.nom %>
-  </b>
-</p>  
-</b>
- 
+
+<h2><%= @produit.nom %></h2>
+<div id="photo">
 <%= image_tag("produit/" + @produit.photo , :class => "round") %>  
+</div>
+<br /><br /><br /><br />
 <p>
   <b>Description:</b>
   <%= @produit.description %>
@@ -18,10 +16,8 @@
   <%= @produit.quantite %>
 </p>
 
-<p>
-  <b>Prix:</b>
-  <%= @produit.prix %>
-</p>
+  <h3>Prix:
+  <%= @produit.prix %> €</h3>
  <% if current_user %>
         <% if current_user.admin %><!-- verifier si le user est un administrateur -->
         <p>
@@ -32,13 +28,14 @@
 	    	<%= link_to 'Supprimer', @produit, :confirm => 'Are you sure?', :method => :delete %><br>	
         <% end %>
     <% end %>
-<%= link_to 'Retour', categoris_path %>
-
-<% if current_user %>
+<h3><%= link_to 'Retour catégorie', {:controller => "categoris", :action => "listProduit", :categori => @produit.categori_id} %>
+</h3><h3>
+    <% if current_user %>
         <% if !current_user.admin %><!-- verifier si le user est un administrateur -->
 			     <%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
         <% end %>
-        <% else if !current_user %>
-            <%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
-<% end %>
+    <% else if !current_user %>
+        <%= link_to 'Ajouter au Panier', new_commande_path(@produit) %>
+    <% end %>
+</h3>
 <% end %>

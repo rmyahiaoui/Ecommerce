@@ -76,10 +76,13 @@ class ProduitsController < ApplicationController
   # DELETE /produits/1.xml
   def destroy
     @produit = Produit.find(params[:id])
+    @categori = Categori.find(@produit.categori_id)
     @produit.destroy
+    
 
     respond_to do |format|
-      format.html { redirect_to(produits_url) }
+    @produit
+      format.html { redirect_to({:controller => "categoris", :action => "listProduit", :categori =>@categori}) }
       format.xml  { head :ok }
     end
   end

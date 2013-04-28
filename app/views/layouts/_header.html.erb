@@ -1,34 +1,39 @@
 
 <header>
 	       
-	<%= image_tag("logo.png", :alt => "Site Ecommerce ", :class => "round") %>	
+	<div id="logo">
+    <%= image_tag("logo.jpeg", :alt => "Site Ecommerce ", :class => "round") %>	
+    </div>
 	<nav class="round">
+        <div id="navclient" class="round">
 		 	<% if current_user %>
 		 	<!-- nom de l'utilisateur identifider -->
-				Bienvenu <%= current_user.username%>
+				<li>Bienvenu <%= current_user.username%></li>
 				<!-- se deconnecter -->
-				<%= link_to " Logout ", :logout %>
+				<li><%= link_to " Déconnexion ", :logout %></li>
 				<!-- afficher le profil -->
-				<%= link_to "Profile", {:controller => "users", :action => "profilUser"}%>
-				
-				<!-- verifié si le compte est administrateur afin qde lui donner les previlege de modifier les produit et gatégorie  -->
-					<% if current_user.admin %>
-					<!-- verifié si le compte est administrateur afin qde lui donner les previlege de modifier les produit et gatégorie  -->
-						<%= link_to " Produit ", produits_path %>
-						<%= link_to " Catégorie ", categoris_path %>
-						<%= link_to " Utilisateurs ", users_path %>
-						<%= link_to " Commandes ", {:controller => "commandes", :action => "commandeEffectuer"}%>
-					<% end %>
+				<li><%= link_to "Profile", {:controller => "users", :action => "profilUser"}%></li>
 					<% if !current_user.admin %>
 						<!-- afficher le panier et les commandes effectuer  -->
-						<%= link_to "Mes achat", {:controller => "commandes", :action => "mesAchat"}%>
+						<li><%= link_to "Mes achat", {:controller => "commandes", :action => "mesAchat"}%></li>
 					<% end %>
 
 			<% else %>
-					<%= link_to " Inscription ", new_user_path%> 
-					<%= link_to " Connexion ", :login %>
-			<% end %></li>
-			<%= link_to " Accueil ", home_path %>
+					<li><%= link_to " Inscription ", new_user_path%> </li>
+					<li><%= link_to " Connexion ", :login %></li>
+			<% end %>
+			<li><%= link_to " Accueil ", home_path %></li>
+        </div>
+		 	<% if current_user %>
+					<% if current_user.admin %>
+                        <div id="navadmin" class="round">
+						<li><%= link_to " Produit ", produits_path %></li>
+						<li><%= link_to " Catégorie ", categoris_path %></li>
+						<li><%= link_to " Utilisateurs ", users_path %></li>
+						<li><%= link_to " Commandes ", {:controller => "commandes", :action => "commandeEffectuer"}%></li>
+                        </div>
+					<% end %>
+            <% end %>
 	</nav>
 
 </header>

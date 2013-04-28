@@ -1,24 +1,51 @@
-    <b>Produits de <%= @categori.nom %>&nbsp;: </b><br><br>
-
+    <h2>
+        <% if @categori %>
+            Produits pour <%= @categori.nom %>&nbsp;: 
+		<% else %>
+            Recherche produits&nbsp;: 
+		<% end %>
+    </h2>
+<div id="recherche" class="round">
 <% form_tag(:action => "listProduit") do %> 
     <%= text_field_tag(:nom, params[:nom], :size => 5) %> 
     <%= submit_tag :"Recherche !" %>
 <% end %>
-<br>
+</div>
+<table id="listinfos">
+
 <% @produits.each do |produit| %>
  
+  <tr>
+    <td class="nom"><%= link_to produit.nom, {:controller => "produits", :action => "afficher", :produit => produit}%></td>
+    <td class="prix"><%= link_to produit.prix.to_s() + " €", {:controller => "produits", :action => "afficher", :produit => produit}%></td>
+<!--    <td><%= link_to "Détail", {:controller => "produits", :action => "afficher", :produit => produit}%></td>
     <b><%= produit.nom %></b>
     Prix: 		<%= produit.prix %> euro
 
-   <%= link_to "Détail", {:controller => "produits", :action => "afficher",
-	 :produit => produit} %>
+   <%= link_to "Détail", {:controller => "produits", :action => "afficher", :produit => produit} %>
   <br>
+-->    
+    <% if current_user %>
+      <% if current_user.admin == true %>
+        <td class="maintenance">
+<!--            <%= link_to 'Visualiser', produit %><br />
+-->
+            <%= link_to 'Modifier', edit_produit_path(produit) %><br />
+            <%= link_to 'Supprimer', {:controller => "produits", "id" => produit.id, :action => :destroy} %></td>
+
+      <% end %>  
+    <% end %>
+  </tr>
+
 <% end %>
-<%= link_to "Retour", {:controller => "categoris", :action => "index"} %><br>
+
+</table>
+
+<h3><%= link_to "Retour catégories", {:controller => "categoris", :action => "index"} %></h3>
 
   <% if current_user %>
       	<% if current_user.admin %><!-- verifier si le user est un administrateur -->
-			<%= link_to 'Creer Produit', new_produit_path %>
+			<%= link_to 'Nouveau Produit', new_produit_path %>
 		<% end %>
 	<% end %>
 

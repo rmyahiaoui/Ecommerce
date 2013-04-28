@@ -1,21 +1,23 @@
-<h3>Categories des produits</h3><br>
+<h2>Categories des produits</h2>
 
+<div id="recherche" class="round">
 <% form_tag(:action => "index") do %><!-- Recherche de categorie -->
     <%= text_field_tag(:nom, params[:nom], :size => 5) %> 
     <%= submit_tag :"Recherche!" %>
 <% end %>
-<br>
-<table class="listcateg">
-  <tr>
+</div>
+<table id="listinfos">
+<!--  <tr>
     <th>Nom</th>
     <th>Description</th>
   </tr>
+-->
 
 <% @categoris.each do |categori| %>
 
   <tr>
-    <td class="clients"><%= link_to categori.nom, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
-    <td class="clients"><%= link_to categori.description, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+    <td class="nom"><%= link_to categori.nom, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
+    <td class="description"><%= link_to categori.description, {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
 <!--    <td><%= link_to "Visualiser Produits", {:controller => "categoris", :action => "listProduit", :categori => categori}%></td>
 -->    
     <% if current_user %>
@@ -23,7 +25,7 @@
         <td class="maintenance">
             <%= link_to 'Visualiser', categori %><br />
             <%= link_to 'Modifier', edit_categori_path(categori) %><br />
-            <%= link_to 'Supprimer', categori, :confirm => 'Are you sure?', :method => :delete %></td>
+            <%= link_to 'Supprimer', {"id" => categori.id, :action => :destroy} %></td>
       <% end %>  
     <% end %>
   </tr>
@@ -32,6 +34,6 @@
 <br/>
 <% if current_user %>
     <% if current_user.admin == true %><!-- verifier si le user est un administrateur -->
-        <%= link_to 'Creer Categori', new_categori_path %>
+        <%= link_to 'Nouvelle Categorie', new_categori_path %>
     <% end %>  
 <% end %>
